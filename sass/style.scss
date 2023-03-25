@@ -1,0 +1,467 @@
+//変数
+$font-size-s        : 12px;
+$font-size-m        : 14px;
+$font-size-default  : 16px;
+$font-size-l        : 18px;
+$font-size-2l       : 24px;
+$font-size-3l       : 30px;
+$font-size-hero     : 38px;
+$font-size-4l       : 40px;
+
+$site-width : 980px;
+
+$bg-color-default : #F6F6F6;
+$bg-color-1 : rgb(255, 226, 226);
+$bg-color-2 : rgb(255, 199, 199);
+$sec-bg-color1: rgba(255, 199, 199,.6);
+$sec-bg-color2: rgba(255, 226, 226,.7);
+
+
+$font-color-default : #666;
+
+$font-family-corp : 'Amatic SC', cursive;
+$font-family-keep :  Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; // TODO:リファクタ必要（変数にする）
+
+
+$space-s  : 5px;
+$space-m  : 10px;
+$space-l  : 15px;
+$space-2l : 20px;
+$space-3l : 30px;
+
+$breakpoints: (
+  'sm': 'screen and (max-width: 414px)',
+  'md': 'screen and (max-width: 767px)',
+  'lg': 'screen and (max-width: 981px)',
+  'xl': 'screen and (max-width: 1200px)',
+) !default;
+
+// ==============================
+// mixin
+// ==============================
+// @mixinは関数のようなものを作れる
+// https://www.webcreatorbox.com/tech/sass-mixin
+// map-get()の第一引数に変数名、第二引数にマップ型のキーを渡すと、マップ型の値が返る
+// #{}は「インターポーレーション」といって、演算できない箇所、変数使えない箇所でも使えるようにするものcalcなどでよく使う
+// http://book.scss.jp/code/c4/08.html
+@mixin mq1($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+      @content;
+    }
+  }
+  
+@mixin mq2($breakpoint: lg){
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+      }
+}
+
+
+// ==============================
+// base
+// ==============================
+html{
+    color: $font-color-default;
+    font-size: $font-size-default;
+    font-family: $font-family-keep;
+}
+h1{
+    color: $font-color-default;
+    font-family: $font-family-corp;
+    font-size: $font-size-4l;
+}
+p,a{
+    -webkit-font-smoothing: antialiased;
+}
+a{
+    text-decoration: none;
+    color: $font-color-default;
+    transition: .5s;
+}
+img{
+    width: 100%;
+    vertical-align: bottom;
+}
+
+// ==============================
+// header
+// ==============================
+
+
+body::before{
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url(../img/5.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+  
+
+//header
+.header{
+  background-color: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: $space-2l;
+  padding-right: $space-2l;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  transition: 1s;
+  z-index: 2;
+  @include mq1(){
+    height: 60px;
+    padding-left: $space-l;
+    padding-right: $space-l;
+  }
+  &.on-bg{
+    background-color: $bg-color-default;
+    transition: 2.5s;
+  }
+}
+
+.menu-toggle-triger{
+    display: none;
+   
+    @include mq1(){
+        height: 32px;
+        width: 40px;
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        z-index: 4;
+        &-sp{
+            width: 100%;
+            height: 5px;
+            background: #333;
+            position: absolute;
+            right: 50%;
+            &:nth-of-type(1){
+                top: 0;
+                transition: .5s;
+            }
+            &:nth-of-type(2){
+                top: 14px;
+                transition: .5s;
+            }
+            &:nth-of-type(3){
+                bottom: 0;
+                transition: .5s;
+            }
+        }
+        .active &-sp{
+            &:nth-of-type(1){
+                transition: .5s;
+                transform: translateY(12px) rotate(-45deg);
+            }
+            &:nth-of-type(2){
+                opacity: 0;
+            }
+            &:nth-of-type(3){
+                transition: .5s;
+                transform: translateY(-15px) rotate(45deg);
+            }
+        }
+    }
+}
+
+.nav-menu{
+    @include mq1(){
+        background-color: $bg-color-default;
+        color: $font-color-default;
+        height: 100vh;
+        width: 100%;
+        padding-top: 50px;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -100%;
+        transition: 1s;
+        &.active{
+            transition: 1s;
+            z-index: 2;
+            right: 0;
+        }
+    }
+}
+
+.menu{
+    font-size: $font-size-2l;
+    font-family: $font-family-corp;
+    display: flex;
+    align-items: center;
+    padding-right: $space-3l;
+    &-item{
+        margin-right: $space-3l;
+    }
+    &-link{
+        -webkit-font-smoothing: initial;
+        &:hover{
+            color: $bg-color-2;
+        }
+    }
+    @include mq1(){
+        &-item{
+            margin-right: initial;
+        }
+        &-link{
+            -webkit-font-smoothing: initial;
+            display: block;
+            padding: $space-l;
+            margin-bottom: $space-3l;
+            font-size: $font-size-hero;
+            text-align: center;
+        }
+    }
+}
+
+//active
+.js-toggle-target.active{
+    .menu{
+        display: block;
+    }
+}
+
+
+// ==============================
+// main
+// ==============================
+
+h2{
+    font-size: $font-size-4l;
+    font-family: $font-family-corp;
+    text-align: center;
+}
+
+.hero{
+    height: 700px;
+    padding-top: 350px;
+    background:none;
+    &-text{
+        font-size: $font-size-hero;
+        @include mq1(){
+            font-size:$font-size-3l;
+        }
+        color: #fff;
+        text-align: center;
+        -webkit-font-smoothing: antialiased;
+        br{
+            display: none;
+            @include mq1(){
+                display: block;
+            }
+        }
+    }
+}
+.section{
+    box-shadow: 0px 0px 8px 2px #ddd inset;
+    &-bg1{
+        background-color: $bg-color-default;
+        width: 100vw;
+    }
+    &-bg2{
+        background-color: $sec-bg-color2;
+        width: 100vw;
+    }
+}
+
+// ==============================
+// container
+// ==============================
+.container{
+    width: $site-width;
+    @include mq2(){
+        width: 100%;
+    }
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 80px;
+    padding-bottom: 120px;
+    &-title{
+        margin-bottom: $space-3l;
+        &-border{
+            &:before, &:after {
+                border-top: 1px solid #2e1f1a;
+                content: "";
+                display: block;
+                position: relative;
+                z-index: 0;
+            }
+            &:before {
+                top: 24px;
+            }
+            &:after {
+                top: -24px;
+            }
+    
+            .ornament{
+                display: inline-block;
+                padding: 0 10px;
+                position: relative;
+                z-index: 1;
+                &.bg1{
+                    background-color: $bg-color-default;
+                }
+            }
+        }
+        @include mq1(){
+            width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+// ==============================
+// news
+// ==============================
+
+.news{
+    &-content{
+        &-wrap{
+            overflow-y:scroll ;
+            height: 60px ;
+            width: 75%;
+            @include mq1(){
+                width: 80%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+            background: #ddd;
+            margin: $space-3l;
+            padding: $space-l;
+        
+        }
+        &-items{
+            margin-bottom: $space-m;
+        }
+    }
+    &-link:hover{
+        color: $bg-color-2;
+    }
+}
+
+
+// ==============================
+// about
+// ==============================
+
+.about-text{
+    line-height: 120%;
+    @include mq1(){
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+// ==============================
+// lineup
+// ==============================
+
+
+.lineup{
+    &-img-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+        @include mq1{
+            display: block;
+            margin-left: $space-l;
+            margin-right: -$space-l;
+        }
+        box-sizing: border-box;
+    }
+    &-panel-link{
+        transition: .8s;
+        margin-right: $space-l;
+        margin-bottom: $space-l;
+        &:hover{
+            transition: .8s;
+            transform: scale(1.15);
+        }
+    }
+    &-img-items{
+        width: 200px;
+        height: 200px;
+        @include mq1(){
+            width: calc(49% - 15px);
+            height: 150px;
+            margin-bottom: $space-l;
+        }
+    }
+}
+
+// ==============================
+// contact
+// ==============================
+.form{
+    text-align: center;
+    width: 60%;
+    @include mq1(){
+        width: 80%;
+    }
+    margin: $space-l auto;
+    &-input{
+        width: 100%;
+        box-sizing: border-box;
+        padding: $space-2l;
+        @include mq1(){
+            padding: $space-s;
+        }
+        margin-bottom: $space-l;
+        border-radius: 4px;
+        font-size: $font-size-l;
+        border: 3px solid #f6f5f4;;
+        outline: none;
+        &:focus{
+            border: 3px solid $bg-color-2;
+        }
+        &::placeholder{
+            color: #ccc;
+        }
+        &.textarea{
+            @include mq1(){
+                height: 200px;
+            }
+        }
+    }
+    &-submit{
+        width: 100%;
+        color: #fff;
+        font-size: $font-size-l;
+        border-radius: 4px;
+        background:linear-gradient(to right, #ffdde1, #ee9ca7);
+        border: none;
+        padding: $space-2l;
+        @include mq1(){
+            padding: $space-m $space-2l;
+        }
+        transition: .5s;
+        &:hover{
+            transition: .5s;
+            transform: translateY(-5px) scale(1.01);
+        }
+    }
+}
+
+// ==============================
+// footer
+// ==============================
+.footer{
+    padding: $space-l;
+    text-align: center;
+    color: #fff;
+    background-color: $font-color-default;
+}

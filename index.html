@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="reset.css"> <!-- 順番を間違えないこと -->
+    <link rel="stylesheet" href="sass/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <title>HTML,CSS OP</title>
+</head>
+<body>
+
+    <!--header-->
+    <header class="header js-float-menu">
+        <h1 class="site-title">ANPAN Bakery</h1>
+
+        <!--SP用ハンバーガーMENU-->
+        <div class="menu-toggle-triger js-sp-menu">
+            <span class="menu-toggle-triger-sp"></span>
+            <span class="menu-toggle-triger-sp"></span>
+            <span class="menu-toggle-triger-sp"></span>
+        </div>
+
+        <!--SP以外のメニューバー-->
+        <nav class="nav-menu js-toggle-target">
+            <ul class="menu">
+                <li class="menu-item"><a href="" class="menu-link js-menu-link">TOP</a></li>
+                <li class="menu-item"><a href="#news" class="menu-link js-menu-link">NEWS</a></li>
+                <li class="menu-item"><a href="#about" class="menu-link js-menu-link">ABOUT</a></li>
+                <li class="menu-item"><a href="#lineup" class="menu-link js-menu-link">LINEUP</a></li>
+                <li class="menu-item"><a href="#contact" class="menu-link js-menu-link">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+    <!--hero-->
+    <section class="section hero js-float-trigger">
+        <p class="hero-text">厳選素材で<br>毎朝焼きたて</p>
+    </section>
+
+    <!--news-->
+    <section id="news" class="section section-bg1">
+        <div class="container container-ornament">
+            <h2 class="container-title container-title-border"><span class="ornament bg1">NEWS</span></h2>
+        
+            <div class="news-content">
+                <ul class="news-content-wrap">
+                    <li class="news-content-items">
+                        <a href="" class="news-link">
+                            <span class="news-date">2022.8.15</span>
+                            <span class="news-title">あんぱん美味しいな〜！</span>
+                        </a>
+                    </li>
+                    <li class="news-content-items">
+                        <a href="" class="news-link">
+                            <span class="news-date">2022.8.16</span>
+                            <span class="news-title">でも、あんぱんも美味しいな〜！</span>
+                        </a>
+                    </li>
+                    <li class="news-content-items">
+                        <a href="" class="news-link">
+                            <span class="news-date">2022.8.17</span>
+                            <span class="news-title">やっぱりあんぱん美味し〜！</span>
+                        </a>
+                    </li>
+                    <li class="news-content-items">
+                        <a href="" class="news-link">
+                            <span class="news-date">2022.8.18</span>
+                            <span class="news-title">あんぱん最高！！</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+    
+        </div>
+    </section>
+
+    <!--about-->
+    <section id="about" class="section section-bg2">
+        <div class="container">
+            <h2 class="container-title"><span class="ornament">ABOUT</span></h2>
+            <div>
+                <p class="about-text">小麦は自家栽培し、卵も愛情をこめて育てている鶏が産む、その日の新鮮なもののみ使用。
+                   あんぱんには欠かせない「餡」も、愛と勇気がともだちな店主からとれる新鮮な餡のみを使用しています。
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!--lineup-->
+    <section id="lineup" class="section section-bg1">
+        <div class="container container-ornament">
+            <h2 class="container-title container-title-border"><span class="ornament bg1">LINEUP</span></h2>
+            <div class="lineup-img-container">
+             
+                <a href="" class="lineup-panel-link">
+                    <img src="img/2.jpeg" class="lineup-img-items">
+                </a>
+                <a href="" class="lineup-panel-link">
+                    <img src="img/3.jpeg" class="lineup-img-items">
+                </a>
+                <a href="" class="lineup-panel-link">
+                    <img src="img/4.jpeg" class="lineup-img-items" >
+                </a>
+                <a href="" class="lineup-panel-link">
+                    <img src="img/6.jpeg" class="lineup-img-items">
+                </a>
+                <a href="" class="lineup-panel-link">
+                    <img src="img/7.jpg" class="lineup-img-items">
+                </a>
+                <a href="" class="lineup-panel-link">
+                    <img src="img/8.jpg" class="lineup-img-items">
+                </a>
+                <a href="" class="lineup-panel-link">
+                    <img src="img/9.jpg" class="lineup-img-items">
+                </a>
+                <a href="" class="lineup-panel-link">
+                    <img src="img/10.jpg" class="lineup-img-items">
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+     <!--contact-->
+    <section id="contact" class="section section-bg2">
+        <div class="container">
+            <h2 class="container-title"><span class="ornament">CONTACT</span></h2>
+            <div>
+                <form class="form">
+                    <input type="text" class="form-input" placeholder="お名前">
+                    <input type="text" class="form-input" placeholder="E-mail">
+                    <textarea cols="50" rows="10" class="form-input textarea" placeholder="お問い合わせ内容"></textarea>
+                    <button type="button" class="form-submit" >送信</button>
+                </form>
+            </div>
+    
+        </div>
+    </section>
+
+    </main>
+
+    <!--footer-->
+    <footer class="footer">
+        <p>Copyright ©️ ANPAN Bakery</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
